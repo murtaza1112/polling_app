@@ -1,0 +1,15 @@
+
+
+
+<p>
+  <strong>User:</strong>
+  <%= @poll.user_id %>
+</p>
+
+<p>
+  <strong>Category:</strong>
+  <%= @poll.category.name %>
+</p>
+
+<%= link_to 'Edit', edit_poll_path(@poll) %> |
+<%= link_to 'Back', polls_path %>

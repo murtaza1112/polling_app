@@ -1,0 +1,23 @@
+<%= form_with(model: mypoll, local: true) do |form| %>
+  <% if mypoll.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(mypoll.errors.count, "error") %> prohibited this mypoll from being saved:</h2>
+
+      <ul>
+        <% mypoll.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= form.label :category_id %>
+    <%= form.select :category_id, Category.all.collect{|a| [a.name,a.id]}, {:include_blank => "Select One" } %>
+  
+  </div>
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>

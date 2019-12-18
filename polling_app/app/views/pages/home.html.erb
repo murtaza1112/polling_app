@@ -1,0 +1,18 @@
+
+<% if current_user %>
+<h1>Welcome Back,<%= current_user.email %></h1>
+<%= link_to 'Sign Out', destroy_user_session_path,method: :delete %>
+<p>What is Your favourite fruit?</p>
+<p><%= link_to 'New poll', new_poll_path %></p>
+<br>
+<br>
+<p><%= link_to 'New mypoll', new_mypoll_path %></p>
+<%else%>
+<h1>Welcome To The HomePage</h1>
+<%= link_to 'Sign Up', new_user_registration_path %>
+<br>
+<%= link_to 'Sign In', new_user_session_path %>
+<%end%>
+
+
+
