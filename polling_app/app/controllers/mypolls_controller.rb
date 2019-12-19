@@ -1,6 +1,6 @@
 class MypollsController < ApplicationController
   before_action :set_mypoll, only: [:show, :edit, :update, :destroy]
-
+  before_action :authenticate_user!, except: [:show,:index,:destroy]
   # GET /mypolls
   # GET /mypolls.json
   def index
@@ -37,11 +37,11 @@ class MypollsController < ApplicationController
     @mypoll.user = current_user
      @category=Category.find(@mypoll.category_id)
         @category.count+=1
-
+        @pcount=0
         respond_to do |format|
       if @mypoll.save and @category.save
        
-        
+        @pcount=1
         format.html { redirect_to @mypoll, notice: 'Mypoll was successfully created.' }
         format.json { render :show, status: :created, location: @mypoll }
       else
@@ -68,9 +68,15 @@ class MypollsController < ApplicationController
   # DELETE /mypolls/1
   # DELETE /mypolls/1.json
   def destroy
-    @mypoll.destroy
+    @category=Category.find(@mypoll.category_id)
+        if @category.count>0
+        @category.count-=1
+        @category.save
+        end
+        @mypoll.destroy
+    
     respond_to do |format|
-      format.html { redirect_to mypolls_url, notice: 'Mypoll was successfully destroyed.' }
+      format.html { redirect_to mypolls_url}
       format.json { head :no_content }
     end
   end

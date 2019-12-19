@@ -1,6 +1,6 @@
 <p id="notice"><%= notice %></p>
 
-<h1>Mypolls</h1>
+<h1>Polls</h1>
 
 <table>
   <thead>
@@ -18,7 +18,6 @@
         <td><%= mypoll.category.name %></td>
         <td><%= mypoll.user.email %></td>
         <td><%= mypoll.category.count %></td>
-        <td><%= link_to 'Show', mypoll %></td>
         <td><%= link_to 'Edit', edit_mypoll_path(mypoll) %></td>
         <td><%= link_to 'Destroy', mypoll, method: :delete, data: { confirm: 'Are you sure?' } %></td>
       </tr>
@@ -28,4 +27,3 @@
    <%= pie_chart @pollsarray %>
 <br>
 
-<%= link_to 'New Mypoll', new_mypoll_path %>
