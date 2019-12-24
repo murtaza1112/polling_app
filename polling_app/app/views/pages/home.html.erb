@@ -4,11 +4,16 @@
 
 <p>Poll Question:What is Your favourite fruit?</p>
 
+   <% if current_user.admin %>
+     <h2>For Admin Only</h2>
+     <%= link_to 'Add Categories',categories_path%>
+
+   <%end%>
 
   <% if current_user.count==0%>
 
   <p><%= link_to 'Create Your Poll', new_mypoll_path %></p>
-  
+
  <% end%>
 
   <p><%= link_to 'View Polls', mypolls_path %></p>
